@@ -37,6 +37,12 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
+      - name: Verify Node.js version
+        shell: bash
+        run: |
+          echo "Node version: $(node --version)"
+          node -e "console.log('process.version:', process.version)"
+
       - name: Verify installation
         run: doctl version
 
