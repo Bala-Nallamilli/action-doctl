@@ -40,8 +40,14 @@ jobs:
       - name: Verify Node.js version
         shell: bash
         run: |
-          echo "Node version: $(node --version)"
-          node -e "console.log('process.version:', process.version)"
+          echo "System node: $(node --version)"
+          echo "---- Runner externals (node24 used by JS actions) ----"
+          ls -la "$RUNNER_TOOL_CACHE/../externals/" 2>/dev/null || true
+          for p in /opt/hostedtoolcache/node24/*/*/bin/node \
+                   /home/runner/externals/node24/bin/node \
+                   "$RUNNER_TOOL_CACHE/../externals/node24/bin/node"; do
+            if [ -x "$p" ]; then echo "Found: $p -> $($p --version)"; fi
+          done
 
       - name: Verify installation
         run: doctl version
