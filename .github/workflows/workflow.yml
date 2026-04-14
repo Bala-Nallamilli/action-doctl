@@ -1,8 +1,8 @@
 on: [push, pull_request]
 name: Test and lint
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+# env:
+#   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
 
